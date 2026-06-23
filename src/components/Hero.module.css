@@ -1,0 +1,130 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.bg {
+  position: absolute;
+  inset: -20% 0 0 0;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(13, 34, 51, 0.88) 0%,
+    rgba(13, 34, 51, 0.75) 50%,
+    rgba(27, 138, 120, 0.18) 100%
+  );
+  z-index: 2;
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  padding: 8rem 0 6rem;
+  max-width: 720px;
+}
+
+.since {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-bottom: 1.25rem;
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.taglineWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin-bottom: 1.5rem;
+}
+.tagline {
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+  color: var(--teal-light);
+  font-weight: 400;
+  font-style: italic;
+}
+.taglineSub {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 1.8vw, 1.45rem);
+  color: rgba(255,255,255,0.65);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.claim {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  max-width: 520px;
+}
+
+.ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.badges {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.badge {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 100px;
+  padding: 0.3rem 0.85rem;
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.scrollLine {
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--teal-light), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.15); }
+}
+
+@media (max-width: 640px) { .ctas { flex-direction: column; } .badges { flex-direction: column; gap: 0.5rem; } }

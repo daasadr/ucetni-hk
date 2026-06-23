@@ -1,0 +1,111 @@
+.section {
+  padding: var(--section-py) 0;
+  background: var(--cream);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.photoCol { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.photoWrap { position: relative; }
+.photo {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  aspect-ratio: 4/5;
+  box-shadow: 0 24px 60px rgba(13,34,51,0.18);
+  display: block;
+}
+.photoBadge {
+  position: absolute;
+  bottom: 1.5rem;
+  right: -1.5rem;
+  width: 88px; height: 88px;
+  background: var(--teal);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 24px rgba(27,138,120,0.4);
+  border: 3px solid var(--cream);
+}
+.badgeNum {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1;
+}
+.badgeLabel {
+  font-family: var(--font-body);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.8);
+}
+
+.credentials { display: flex; flex-direction: column; gap: 0.65rem; }
+.credential {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--txt-dark-mid);
+}
+.credIcon {
+  color: var(--teal);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+.textCol { padding-top: 1rem; }
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 400;
+  color: var(--txt-dark);
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+.tealLine { width: 3rem; height: 2px; background: var(--teal); margin-bottom: 1.75rem; }
+.para {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--txt-dark-mid);
+  line-height: 1.85;
+  margin-bottom: 1rem;
+}
+
+.sig { display: flex; align-items: center; gap: 1rem; margin-top: 2rem; }
+.sigLine { width: 2.5rem; height: 1px; background: var(--teal); flex-shrink: 0; }
+.sigName {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--txt-dark);
+}
+.sigTitle {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--txt-dark-low);
+}
+
+@media (max-width: 1024px) { .grid { grid-template-columns: 340px 1fr; gap: 3rem; } }
+@media (max-width: 800px) {
+  .grid { grid-template-columns: 1fr; }
+  .photoCol { max-width: 400px; margin-inline: auto; }
+  .photoBadge { right: 0.5rem; }
+}

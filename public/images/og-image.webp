@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0d2233"/>
+  <rect x="0" y="0" width="6" height="630" fill="#1b8a78"/>
+  <text x="80" y="260" font-family="Georgia, serif" font-size="52" fill="#ddeae6" font-weight="400">Ing. Markéta Horáková</text>
+  <text x="80" y="320" font-family="Helvetica, sans-serif" font-size="22" fill="#1b8a78" font-weight="400" letter-spacing="3">CERTIFIKOVANÁ ÚČETNÍ · PRAHA</text>
+  <line x1="80" y1="350" x2="280" y2="350" stroke="#1b8a78" stroke-width="2"/>
+  <text x="80" y="400" font-family="Georgia, serif" font-size="28" fill="#7aabb8" font-style="italic">Účetnictví bez starostí. Daně bez překvapení.</text>
+</svg>
