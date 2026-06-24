@@ -278,14 +278,88 @@
   50%       { opacity: 1;   transform: scaleY(1); }
 }
 
+/* bubbles wrapper — pouze pro layout na mobilu */
+.bubbles {
+  display: contents;
+}
+
 /* ─── responsive ─── */
 
-@media (max-width: 1100px) {
-  .botPanel { display: none; }
+/* 900px–1000px: bot malinko menší, stále vpravo */
+@media (max-width: 1000px) {
+  .botPanel { width: 230px; }
+  .botImg   { width: 190px; }
+  .bubble   { width: 210px; font-size: 0.7rem; }
 }
+
+/* Pod 900px: bot se přesune pod text, layoutuje se do řady */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    min-height: 100vh;
+  }
+
+  .content {
+    padding: 7rem 0 1.5rem;
+    max-width: 100%;
+  }
+
+  .botPanel {
+    position: static;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+    padding: 0 1.5rem 5rem;
+    transform: none;
+    top: auto;
+  }
+
+  .botHeader { display: none; }
+
+  .botImg {
+    width: 120px;
+    flex-shrink: 0;
+  }
+
+  .bubbles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+    max-width: 320px;
+  }
+
+  .bubble {
+    width: auto;
+    margin-top: 0;
+    font-size: 0.72rem;
+  }
+
+  /* na mobilu špičku skryjeme — je vedle obrázku, ne pod ním */
+  .bubble::before,
+  .bubble::after { display: none; }
+
+  /* levá bublina dostane špičku doleva směrem k botovi */
+  .bubble1::after {
+    display: block;
+    top: 50%;
+    left: -10px;
+    transform: translateY(-50%);
+    border-left: none;
+    border-right: 10px solid #fff;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+  }
+}
+
 @media (max-width: 640px) {
   .hero   { clip-path: polygon(0 0, 100% 0, 100% 97%, 0 100%); }
   .bgWord { font-size: clamp(5rem, 25vw, 8rem); bottom: 4%; }
   .ctas   { flex-direction: column; }
   .badges { flex-direction: column; gap: 0.5rem; }
+  .botImg { width: 100px; }
 }

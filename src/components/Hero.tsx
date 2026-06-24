@@ -57,11 +57,13 @@ export default function Hero() {
           alt="Virtuální asistentka"
           className={styles.botImg}
         />
-        <div className={`${styles.bubble} ${styles.bubble1}`}>
-          Potřebujete se zeptat na otázku ohledně mých služeb či ověřit si dostupnost?
-        </div>
-        <div className={`${styles.bubble} ${styles.bubble2}`}>
-          ✨ Váš osobní chatbot – můžete jej mít na webu taky
+        <div className={styles.bubbles}>
+          <div className={`${styles.bubble} ${styles.bubble1}`}>
+            Potřebujete se zeptat na otázku ohledně mých služeb či ověřit si dostupnost?
+          </div>
+          <div className={`${styles.bubble} ${styles.bubble2}`}>
+            ✨ Váš osobní chatbot – můžete jej mít na webu taky
+          </div>
         </div>
       </div>
 
