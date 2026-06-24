@@ -43,7 +43,6 @@
   white-space: nowrap;
 }
 
-/* svislá teal linka vlevo — teď svítí */
 .accentLine {
   position: absolute;
   left: 0; top: 0; bottom: 0;
@@ -53,25 +52,14 @@
   box-shadow: 0 0 18px 3px rgba(34, 168, 146, 0.7), 0 0 40px rgba(34, 168, 146, 0.35);
 }
 
+/* ─── hlavní text (původní layout) ─── */
+
 .content {
   position: relative;
   z-index: 3;
-  padding: 8rem 0 7rem;
-  width: 100%;
+  padding: 8rem 0 8rem;
+  max-width: 680px;
 }
-
-.row {
-  display: flex;
-  align-items: flex-end;
-  gap: 3rem;
-}
-
-.left {
-  flex: 1;
-  max-width: 580px;
-}
-
-/* — — — Left column text — — — */
 
 .since {
   font-family: var(--font-body);
@@ -163,15 +151,19 @@
   backdrop-filter: blur(4px);
 }
 
-/* — — — Bot panel (right column) — — — */
+/* ─── chatbot panel — absolutně přilepený k pravému okraji ─── */
 
 .botPanel {
-  flex: 0 0 280px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  padding-bottom: 0.5rem;
-  align-self: flex-end;
+  align-items: center;
+  width: 270px;
+  padding-right: 0;
 }
 
 .botHeader {
@@ -179,13 +171,14 @@
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-body);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.4);
-  margin-bottom: 0.2rem;
-  padding-left: 0.25rem;
+  margin-bottom: 0.5rem;
+  align-self: flex-start;
+  padding-left: 0.5rem;
 }
 .onlineDot {
   width: 7px;
@@ -193,62 +186,77 @@
   background: #2ecc71;
   border-radius: 50%;
   box-shadow: 0 0 8px rgba(46, 204, 113, 0.9), 0 0 16px rgba(46, 204, 113, 0.5);
-  animation: pulse 2.4s ease-in-out infinite;
   flex-shrink: 0;
+  animation: dotPulse 2.4s ease-in-out infinite;
 }
-@keyframes pulse {
+@keyframes dotPulse {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-.bubble {
-  background: rgba(10, 26, 40, 0.88);
-  border: 1px solid rgba(27, 138, 120, 0.38);
-  border-radius: 1rem 1rem 1rem 0.25rem;
-  padding: 0.88rem 1.1rem;
-  font-family: var(--font-body);
-  font-size: 0.78rem;
-  line-height: 1.68;
-  color: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 0 18px rgba(27, 138, 120, 0.12), 0 4px 18px rgba(0, 0, 0, 0.38);
-  animation: bubbleIn 0.52s cubic-bezier(0.34, 1.4, 0.64, 1) both;
-  opacity: 0;
-}
-.bubble1 { animation-delay: 0.5s; }
-.bubble2 {
-  animation-delay: 1.2s;
-  background: rgba(12, 52, 46, 0.88);
-  border-color: rgba(34, 168, 146, 0.6);
-  box-shadow: 0 0 22px rgba(34, 168, 146, 0.25), 0 4px 16px rgba(0, 0, 0, 0.3);
-  color: var(--teal-light);
-  font-weight: 500;
-  font-size: 0.75rem;
-  text-shadow: 0 0 12px rgba(34, 168, 146, 0.5);
-}
-
-@keyframes bubbleIn {
-  from { opacity: 0; transform: translateY(10px) scale(0.96); }
-  to   { opacity: 1; transform: none; }
+  50%       { opacity: 0.35; }
 }
 
 .botImg {
-  width: 220px;
-  align-self: center;
+  width: 230px;
   display: block;
   filter:
     drop-shadow(0 0 28px rgba(34, 168, 146, 0.6))
     drop-shadow(0 0 10px rgba(34, 168, 146, 0.3))
-    drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
-  animation: floatBot 5.5s ease-in-out infinite;
-  margin-top: 0.5rem;
-}
-@keyframes floatBot {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-10px); }
+    drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4));
+  /* bez animace vznášení */
 }
 
-/* — — — Scroll hint — — — */
+/* ─── komiksové bubliny bílé, pod ilustrací, špička nahoru ─── */
+
+.bubble {
+  width: 250px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 0.78rem 1.05rem;
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  line-height: 1.65;
+  color: #1a2d3a;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+  position: relative;
+  margin-top: 12px;
+  animation: bubbleIn 0.5s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+  opacity: 0;
+}
+.bubble1 { animation-delay: 0.5s; }
+.bubble2 {
+  animation-delay: 1.15s;
+  margin-top: 14px;
+}
+
+/* špička trojúhelník — ukazuje NAHORU k ilustraci (mluvčí je nad bublinou) */
+.bubble::before {
+  content: '';
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-bottom: 11px solid rgba(0, 0, 0, 0.1);
+}
+.bubble::after {
+  content: '';
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #fff;
+}
+
+@keyframes bubbleIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ─── scroll hint ─── */
 
 .scrollHint {
   position: absolute;
@@ -270,15 +278,14 @@
   50%       { opacity: 1;   transform: scaleY(1); }
 }
 
-/* — — — Responsive — — — */
+/* ─── responsive ─── */
 
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
   .botPanel { display: none; }
-  .left { max-width: 100%; }
 }
 @media (max-width: 640px) {
-  .hero  { clip-path: polygon(0 0, 100% 0, 100% 97%, 0 100%); }
+  .hero   { clip-path: polygon(0 0, 100% 0, 100% 97%, 0 100%); }
   .bgWord { font-size: clamp(5rem, 25vw, 8rem); bottom: 4%; }
-  .ctas  { flex-direction: column; }
+  .ctas   { flex-direction: column; }
   .badges { flex-direction: column; gap: 0.5rem; }
 }
