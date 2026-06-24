@@ -10,28 +10,8 @@ const DotCanvas = dynamic(() => import('./DotCanvas'), { ssr: false });
 type Msg = { role: 'user' | 'bot'; text: string };
 
 /* ── inteligentní fallback pro GitHub Pages (bez API) ── */
-const REPLIES: [RegExp, string][] = [
-  [/(cen|kolik|pla|tarif|ceník)/i,
-    'Účetnictví pro živnostníky od 1 500 Kč/měsíc, pro s.r.o. od 2 800 Kč/měsíc. Podrobný ceník najdete výše na stránce. Ráda připravím individuální nabídku!'],
-  [/(termín|volný|dostupn|kdy|schůzk|konzultace)/i,
-    'Tento týden mám volno: čtvrtek 26. 6. v 10:00 a pátek 27. 6. ve 14:00. Příští týden: pondělí 30. 6. v 9:00 a středa 2. 7. v 15:00. Napište mi na info@horakova-ucetni.cz pro rezervaci!'],
-  [/(mzd|zaměstnanec|výplat|personalist)/i,
-    'Zpracovávám kompletní mzdovou agendu — výpočet mezd, přihlášky OSSZ/ZP, roční zúčtování. Cena od 200 Kč/zaměstnanec/měsíc.'],
-  [/(dph|vat)/i,
-    'DPH přiznání, souhrnná hlášení i kontrolní hlášení — vše zajišťuji v termínu. Cena od 800 Kč/kvartál.'],
-  [/(daň|přiznání|dpfo|dppo)/i,
-    'Zpracovávám DPFO, DPPO i DPH. Hlídám termíny za vás — žádné pokuty, žádný stres.'],
-  [/(s\.r\.o\.|firma|společnost|esg|holding)/i,
-    'Pro s.r.o. nabízím kompletní vedení účetnictví, daňová přiznání i reporting od 2 800 Kč/měsíc.'],
-  [/(živno|osvč|podnikat)/i,
-    'Balíček "Podnikatel Start" pro OSVČ: daňová evidence, DPH, daňové přiznání — vše za 1 990 Kč/měsíc.'],
-];
-
-function getBotReply(text: string): string {
-  for (const [re, reply] of REPLIES) {
-    if (re.test(text)) return reply;
-  }
-  return 'Děkuji za dotaz! Nejraději vám poradím osobně — info@horakova-ucetni.cz nebo +420 777 123 456. První konzultace je vždy zdarma!';
+function getBotReply(_text: string): string {
+  return 'Jsem zatím ukázkový chatbot — ale vy můžete mít na svém webu skutečného, který odpoví na cokoliv. Mezitím mi napište přímo: info@horakova-ucetni.cz';
 }
 /* ─────────────────────────────────────────────────── */
 
