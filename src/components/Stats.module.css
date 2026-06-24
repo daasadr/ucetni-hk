@@ -48,6 +48,9 @@
   line-height: 1;
   margin-bottom: 0.6rem;
   letter-spacing: -0.02em;
+  text-shadow:
+    0 0 25px rgba(34, 168, 146, 0.65),
+    0 0 55px rgba(34, 168, 146, 0.28);
 }
 
 .label {

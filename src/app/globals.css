@@ -71,10 +71,16 @@ h1,h2,h3,h4,h5,h6 { font-family: var(--font-heading); line-height: 1.2; }
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.04em;
-  transition: background 0.22s, transform 0.18s;
+  transition: background 0.22s, transform 0.18s, box-shadow 0.22s;
   cursor: pointer;
+  box-shadow: 0 0 16px rgba(34, 168, 146, 0.45), 0 4px 14px rgba(0, 0, 0, 0.2);
 }
-.btn-teal:hover { background: var(--teal-light); border-color: var(--teal-light); transform: translateY(-2px); }
+.btn-teal:hover {
+  background: var(--teal-light);
+  border-color: var(--teal-light);
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(34, 168, 146, 0.7), 0 6px 20px rgba(0, 0, 0, 0.25);
+}
 
 .btn-outline {
   display: inline-flex;

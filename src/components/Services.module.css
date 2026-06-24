@@ -52,7 +52,9 @@
   border-color: rgba(27,138,120,0.7);
   border-top-color: var(--teal-light);
   transform: translateY(-6px);
-  box-shadow: 0 20px 48px rgba(0,0,0,0.25);
+  box-shadow:
+    0 20px 48px rgba(0,0,0,0.25),
+    0 -2px 20px rgba(34, 168, 146, 0.35);
 }
 
 /* velké číslo v pozadí karty */
