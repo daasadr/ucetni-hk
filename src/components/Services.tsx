@@ -18,6 +18,9 @@ export default function Services() {
               <span className={styles.icon}>{item.icon}</span>
               <h3 className={styles.cardName}>{item.name}</h3>
               <p className={styles.cardDesc}>{item.desc}</p>
+              <span className={styles.num} aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
             </div>
           ))}
         </div>

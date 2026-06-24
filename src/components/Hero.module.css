@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% 94%, 0 100%);
 }
 
 .bg {
@@ -19,112 +20,156 @@
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(13, 34, 51, 0.88) 0%,
-    rgba(13, 34, 51, 0.75) 50%,
-    rgba(27, 138, 120, 0.18) 100%
+    rgba(13, 34, 51, 0.92) 0%,
+    rgba(13, 34, 51, 0.78) 50%,
+    rgba(27, 138, 120, 0.2) 100%
   );
   z-index: 2;
+}
+
+/* velký outline text v pozadí */
+.bgWord {
+  position: absolute;
+  right: -2rem;
+  bottom: 8%;
+  z-index: 2;
+  font-family: var(--font-heading);
+  font-size: clamp(8rem, 18vw, 18rem);
+  font-weight: 400;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(27, 138, 120, 0.18);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* svislá teal linka vlevo */
+.accentLine {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, transparent, var(--teal), transparent);
+  z-index: 3;
+  opacity: 0.7;
 }
 
 .content {
   position: relative;
   z-index: 3;
-  padding: 8rem 0 6rem;
-  max-width: 720px;
+  padding: 8rem 0 8rem;
+  max-width: 680px;
 }
 
 .since {
   font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--teal-light);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.since::before {
+  content: '';
+  display: inline-block;
+  width: 2rem;
+  height: 1px;
+  background: var(--teal-light);
+  flex-shrink: 0;
 }
 
 .name {
   font-family: var(--font-heading);
-  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-size: clamp(2.6rem, 5.5vw, 4.4rem);
   font-weight: 400;
   color: #fff;
-  margin-bottom: 1rem;
-  line-height: 1.1;
+  margin-bottom: 1.25rem;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
 }
 
 .taglineWrap {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
-  margin-bottom: 1.5rem;
+  gap: 0.15rem;
+  margin-bottom: 1.75rem;
+  border-left: 3px solid var(--teal);
+  padding-left: 1.25rem;
 }
 .tagline {
   font-family: var(--font-heading);
-  font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+  font-size: clamp(1.2rem, 2.2vw, 1.7rem);
   color: var(--teal-light);
   font-weight: 400;
   font-style: italic;
 }
 .taglineSub {
   font-family: var(--font-heading);
-  font-size: clamp(1rem, 1.8vw, 1.45rem);
-  color: rgba(255,255,255,0.65);
+  font-size: clamp(0.95rem, 1.6vw, 1.3rem);
+  color: rgba(255,255,255,0.6);
   font-weight: 400;
   font-style: italic;
 }
 
 .claim {
   font-family: var(--font-body);
-  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
-  color: rgba(255,255,255,0.7);
-  line-height: 1.7;
+  font-size: clamp(0.9rem, 1.3vw, 1rem);
+  color: rgba(255,255,255,0.65);
+  line-height: 1.75;
   margin-bottom: 2.5rem;
-  max-width: 520px;
+  max-width: 480px;
 }
 
 .ctas {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.75rem;
 }
 
 .badges {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
 }
 .badge {
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 500;
-  color: rgba(255,255,255,0.55);
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 100px;
   padding: 0.3rem 0.85rem;
+  backdrop-filter: blur(4px);
 }
 
 .scrollHint {
   position: absolute;
-  bottom: 2.5rem;
+  bottom: 4rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 .scrollLine {
   display: block;
   width: 1px;
-  height: 48px;
+  height: 52px;
   background: linear-gradient(to bottom, var(--teal-light), transparent);
-  animation: scrollPulse 2s ease-in-out infinite;
+  animation: scrollPulse 2.2s ease-in-out infinite;
 }
 @keyframes scrollPulse {
-  0%, 100% { opacity: 0.4; transform: scaleY(1); }
-  50% { opacity: 1; transform: scaleY(1.15); }
+  0%, 100% { opacity: 0.3; transform: scaleY(0.9); }
+  50% { opacity: 1; transform: scaleY(1); }
 }
 
-@media (max-width: 640px) { .ctas { flex-direction: column; } .badges { flex-direction: column; gap: 0.5rem; } }
+@media (max-width: 640px) {
+  .hero { clip-path: polygon(0 0, 100% 0, 100% 97%, 0 100%); }
+  .bgWord { font-size: clamp(5rem, 25vw, 8rem); bottom: 4%; }
+  .ctas { flex-direction: column; }
+  .badges { flex-direction: column; gap: 0.5rem; }
+}

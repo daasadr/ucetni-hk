@@ -1,0 +1,35 @@
+.strip {
+  background: var(--teal);
+  overflow: hidden;
+  padding: 0.7rem 0;
+  user-select: none;
+  position: relative;
+  z-index: 10;
+}
+
+.track {
+  display: flex;
+  white-space: nowrap;
+  animation: scroll 28s linear infinite;
+  will-change: transform;
+}
+
+.track span {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  padding-right: 0;
+  flex-shrink: 0;
+}
+
+@keyframes scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track { animation: none; }
+}

@@ -23,6 +23,8 @@ export default function Hero() {
       <div ref={bgRef} className={styles.bg} style={{ backgroundImage: `url(${asset('/images/hero-bg.webp')})` }} />
       <div className={styles.overlay} />
       <DotCanvas />
+      <div className={styles.bgWord} aria-hidden="true">HORÁKOVÁ</div>
+      <div className={styles.accentLine} aria-hidden="true" />
 
       <div className={`container ${styles.content}`}>
         <p className={`${styles.since} reveal`}>{CONTENT.sinceLabel}</p>
