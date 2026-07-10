@@ -25,7 +25,7 @@ export default function Services() {
           ))}
         </div>
         <div className={`${styles.cta} reveal`}>
-          <a href="/#kontakt" className="btn-teal">Nezávazně poptat služby</a>
+          <a href="#kontakt" className="btn-teal">Nezávazně poptat služby</a>
         </div>
       </div>
     </section>

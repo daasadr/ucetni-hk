@@ -24,7 +24,7 @@ export default function Process() {
           ))}
         </div>
         <div className={`${styles.cta} reveal`}>
-          <a href="/#kontakt" className="btn-outline-dark">Začít spolupráci</a>
+          <a href="#kontakt" className="btn-outline-dark">Začít spolupráci</a>
         </div>
       </div>
     </section>

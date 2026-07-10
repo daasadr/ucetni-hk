@@ -5,11 +5,11 @@ import Link from 'next/link';
 import styles from './Nav.module.css';
 
 const LINKS = [
-  { label: 'O mně', href: '/#o-mne' },
-  { label: 'Služby', href: '/#sluzby' },
-  { label: 'Ceník', href: '/#cenik' },
-  { label: 'Reference', href: '/#reference' },
-  { label: 'Kontakt', href: '/#kontakt' },
+  { label: 'O mně', href: '#o-mne' },
+  { label: 'Služby', href: '#sluzby' },
+  { label: 'Ceník', href: '#cenik' },
+  { label: 'Reference', href: '#reference' },
+  { label: 'Kontakt', href: '#kontakt' },
 ];
 
 export default function Nav() {
@@ -36,11 +36,11 @@ export default function Nav() {
 
         <nav className={`${styles.nav} ${open ? styles.navOpen : ''}`}>
           {LINKS.map(l => (
-            <Link key={l.href} href={l.href} className={styles.link} onClick={() => setOpen(false)}>
+            <a key={l.href} href={l.href} className={styles.link} onClick={() => setOpen(false)}>
               {l.label}
-            </Link>
+            </a>
           ))}
-          <a href="/#kontakt" className={`btn-teal ${styles.navCta}`} onClick={() => setOpen(false)}>
+          <a href="#kontakt" className={`btn-teal ${styles.navCta}`} onClick={() => setOpen(false)}>
             Konzultace zdarma
           </a>
         </nav>

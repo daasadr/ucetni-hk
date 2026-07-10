@@ -3,11 +3,11 @@ import { CONTENT } from '@/lib/content';
 import styles from './Footer.module.css';
 
 const NAV = [
-  { label: 'O mně', href: '/#o-mne' },
-  { label: 'Služby', href: '/#sluzby' },
-  { label: 'Ceník', href: '/#cenik' },
-  { label: 'Reference', href: '/#reference' },
-  { label: 'Kontakt', href: '/#kontakt' },
+  { label: 'O mně', href: '#o-mne' },
+  { label: 'Služby', href: '#sluzby' },
+  { label: 'Ceník', href: '#cenik' },
+  { label: 'Reference', href: '#reference' },
+  { label: 'Kontakt', href: '#kontakt' },
 ];
 
 export default function Footer() {

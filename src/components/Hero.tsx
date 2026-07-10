@@ -83,8 +83,8 @@ export default function Hero() {
         </div>
         <p className={`${styles.claim} reveal reveal-delay-3`}>{CONTENT.claim}</p>
         <div className={`${styles.ctas} reveal reveal-delay-3`}>
-          <a href="/#kontakt" className="btn-teal">{CONTENT.cta1}</a>
-          <a href="/#sluzby" className="btn-outline">{CONTENT.cta2}</a>
+          <a href="#kontakt" className="btn-teal">{CONTENT.cta1}</a>
+          <a href="#sluzby" className="btn-outline">{CONTENT.cta2}</a>
         </div>
         <div className={`${styles.badges} reveal reveal-delay-4`}>
           <span className={styles.badge}>✓ Certifikát I. stupně SÚ ČR</span>

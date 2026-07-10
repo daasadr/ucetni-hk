@@ -35,7 +35,7 @@ export default function FAQ() {
         </div>
         <div className={`${styles.cta} reveal`}>
           <p className={styles.ctaText}>Nenašli jste odpověď? Napište mi.</p>
-          <a href="/#kontakt" className="btn-teal">Napsat dotaz</a>
+          <a href="#kontakt" className="btn-teal">Napsat dotaz</a>
         </div>
       </div>
     </section>

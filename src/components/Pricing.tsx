@@ -34,7 +34,7 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
-              <a href="/#kontakt" className={plan.highlight ? 'btn-teal' : 'btn-outline-dark'}>
+              <a href="#kontakt" className={plan.highlight ? 'btn-teal' : 'btn-outline-dark'}>
                 {plan.cta}
               </a>
             </div>
