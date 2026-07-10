@@ -1,9 +1,12 @@
 'use client';
-import { CONTENT } from '@/lib/content';
+import { useLanguage } from '@/lib/LanguageContext';
+import { TRANSLATIONS } from '@/lib/translations';
 import styles from './Services.module.css';
 
 export default function Services() {
-  const s = CONTENT.services;
+  const { lang } = useLanguage();
+  const s = TRANSLATIONS[lang].services;
+
   return (
     <section id="sluzby" className={styles.section}>
       <div className="container">
@@ -25,7 +28,7 @@ export default function Services() {
           ))}
         </div>
         <div className={`${styles.cta} reveal`}>
-          <a href="#kontakt" className="btn-teal">Nezávazně poptat služby</a>
+          <a href="#kontakt" className="btn-teal">{s.cta}</a>
         </div>
       </div>
     </section>

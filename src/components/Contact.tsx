@@ -1,13 +1,15 @@
 'use client';
 import dynamic from 'next/dynamic';
 import { useState, FormEvent } from 'react';
-import { CONTENT } from '@/lib/content';
+import { useLanguage } from '@/lib/LanguageContext';
+import { TRANSLATIONS } from '@/lib/translations';
 import styles from './Contact.module.css';
 
 const Map = dynamic(() => import('./Map'), { ssr: false });
 
 export default function Contact() {
-  const c = CONTENT.contact;
+  const { lang } = useLanguage();
+  const c = TRANSLATIONS[lang].contact;
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -58,10 +60,10 @@ export default function Contact() {
 
           <div className={`${styles.sidebar} reveal reveal-delay-2`}>
             <div className={styles.infoBox}>
-              <InfoRow icon="📞" label="Telefon" value={c.info.phone} href={`tel:${c.info.phone.replace(/\s/g, '')}`} />
-              <InfoRow icon="✉️" label="E-mail" value={c.info.email} href={`mailto:${c.info.email}`} />
-              <InfoRow icon="📍" label="Adresa" value={c.info.address} />
-              <InfoRow icon="🕐" label="Úřední hodiny" value={c.info.hours} sub={c.info.hoursNote} />
+              <InfoRow icon="📞" label={c.infoLabels.phone} value={c.info.phone} href={`tel:${c.info.phone.replace(/\s/g, '')}`} />
+              <InfoRow icon="✉️" label={c.infoLabels.email} value={c.info.email} href={`mailto:${c.info.email}`} />
+              <InfoRow icon="📍" label={c.infoLabels.address} value={c.info.address} />
+              <InfoRow icon="🕐" label={c.infoLabels.hours} value={c.info.hours} sub={c.info.hoursNote} />
             </div>
             <div className={styles.mapWrap}>
               <Map label={c.info.address} />

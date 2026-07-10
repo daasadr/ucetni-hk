@@ -2,18 +2,13 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
 import { asset } from '@/lib/basePath';
-import { CONTENT } from '@/lib/content';
+import { TRANSLATIONS } from '@/lib/translations';
+import { useLanguage } from '@/lib/LanguageContext';
 import styles from './Hero.module.css';
 
 const DotCanvas = dynamic(() => import('./DotCanvas'), { ssr: false });
 
 type Msg = { role: 'user' | 'bot'; text: string };
-
-/* ── inteligentní fallback pro GitHub Pages (bez API) ── */
-function getBotReply(_text: string): string {
-  return 'Jsem zatím ukázkový chatbot — ale vy můžete mít na svém webu skutečného, který odpoví na cokoliv. Mezitím mi napište přímo: info@horakova-ucetni.cz';
-}
-/* ─────────────────────────────────────────────────── */
 
 export default function Hero() {
   const bgRef = useRef<HTMLDivElement>(null);
@@ -22,6 +17,9 @@ export default function Hero() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const messagesRef = useRef<HTMLDivElement>(null);
+  const { lang } = useLanguage();
+  const t = TRANSLATIONS[lang];
+  const ct = t.chatbot;
 
   useEffect(() => {
     const onScroll = () => {
@@ -48,14 +46,14 @@ export default function Hero() {
       const res = await fetch('https://winter-sun-a78d.daasa-d.workers.dev', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: next }),
+        body: JSON.stringify({ messages: next, lang }),
       });
       if (!res.ok) throw new Error();
       const data = await res.json();
       setMessages(prev => [...prev, { role: 'bot', text: data.reply }]);
     } catch {
       await new Promise(r => setTimeout(r, 1050));
-      setMessages(prev => [...prev, { role: 'bot', text: getBotReply(text) }]);
+      setMessages(prev => [...prev, { role: 'bot', text: ct.fallback }]);
     } finally {
       setLoading(false);
     }
@@ -73,23 +71,20 @@ export default function Hero() {
       <div className={styles.bgWord} aria-hidden="true">HORÁKOVÁ</div>
       <div className={styles.accentLine} aria-hidden="true" />
 
-      {/* hlavní textový obsah */}
       <div className={`container ${styles.content}`}>
-        <p className={`${styles.since} reveal`}>{CONTENT.sinceLabel}</p>
-        <h1 className={`${styles.name} reveal reveal-delay-1`}>{CONTENT.name}</h1>
+        <p className={`${styles.since} reveal`}>{t.sinceLabel}</p>
+        <h1 className={`${styles.name} reveal reveal-delay-1`}>{t.name}</h1>
         <div className={`${styles.taglineWrap} reveal reveal-delay-2`}>
-          <span className={styles.tagline}>{CONTENT.tagline}</span>
-          <span className={styles.taglineSub}>{CONTENT.sub}</span>
+          <span className={styles.tagline}>{t.tagline}</span>
+          <span className={styles.taglineSub}>{t.sub}</span>
         </div>
-        <p className={`${styles.claim} reveal reveal-delay-3`}>{CONTENT.claim}</p>
+        <p className={`${styles.claim} reveal reveal-delay-3`}>{t.claim}</p>
         <div className={`${styles.ctas} reveal reveal-delay-3`}>
-          <a href="#kontakt" className="btn-teal">{CONTENT.cta1}</a>
-          <a href="#sluzby" className="btn-outline">{CONTENT.cta2}</a>
+          <a href="#kontakt" className="btn-teal">{t.cta1}</a>
+          <a href="#sluzby" className="btn-outline">{t.cta2}</a>
         </div>
         <div className={`${styles.badges} reveal reveal-delay-4`}>
-          <span className={styles.badge}>✓ Certifikát I. stupně SÚ ČR</span>
-          <span className={styles.badge}>✓ 14+ let praxe</span>
-          <span className={styles.badge}>✓ První konzultace zdarma</span>
+          {t.badges.map((b, i) => <span key={i} className={styles.badge}>{b}</span>)}
         </div>
       </div>
 
@@ -97,15 +92,14 @@ export default function Hero() {
       <div className={styles.botPanel}>
         <div className={styles.botHeader}>
           <span className={styles.onlineDot} />
-          <span>Asistentka · online</span>
+          <span>{ct.online}</span>
         </div>
 
-        {/* bubble1 nebo chat — NAD ilustrací, zobáček míří DOLŮ k ústům */}
         {!chatOpen ? (
           <div className={`${styles.bubble} ${styles.bubble1}`}>
-            Potřebujete se zeptat na otázku ohledně mých služeb či ověřit si dostupnost?
+            {ct.bubble1}
             <button className={styles.askBtn} onClick={() => setChatOpen(true)}>
-              ZEPTAT SE
+              {ct.askBtn}
             </button>
           </div>
         ) : (
@@ -113,7 +107,7 @@ export default function Hero() {
             <div className={styles.chatMessages} ref={messagesRef}>
               {messages.length === 0 && (
                 <p className={styles.chatEmpty}>
-                  <span className={styles.chatPrompt}>Ptejte se…</span>
+                  <span className={styles.chatPrompt}>{ct.prompt}</span>
                 </p>
               )}
               {messages.map((msg, i) => (
@@ -135,7 +129,7 @@ export default function Hero() {
                 value={input}
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={onKey}
-                placeholder="Napište dotaz…"
+                placeholder={ct.placeholder}
                 rows={2}
               />
               <button
@@ -143,7 +137,7 @@ export default function Hero() {
                 onClick={sendMessage}
                 disabled={loading || !input.trim()}
               >
-                OK
+                {ct.sendBtn}
               </button>
             </div>
           </div>
@@ -151,9 +145,8 @@ export default function Hero() {
 
         <img src={asset('/images/bot.webp')} alt="Virtuální asistentka" className={styles.botImg} />
 
-        {/* bubble2 — pod ilustrací */}
         <div className={`${styles.bubble} ${styles.bubble2}`}>
-          ✨ Váš osobní chatbot – můžete jej mít na webu taky
+          {ct.bubble2}
         </div>
       </div>
 

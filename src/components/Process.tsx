@@ -1,9 +1,12 @@
 'use client';
-import { CONTENT } from '@/lib/content';
+import { useLanguage } from '@/lib/LanguageContext';
+import { TRANSLATIONS } from '@/lib/translations';
 import styles from './Process.module.css';
 
 export default function Process() {
-  const p = CONTENT.process;
+  const { lang } = useLanguage();
+  const p = TRANSLATIONS[lang].process;
+
   return (
     <section className={styles.section}>
       <div className="container">
@@ -24,7 +27,7 @@ export default function Process() {
           ))}
         </div>
         <div className={`${styles.cta} reveal`}>
-          <a href="#kontakt" className="btn-outline-dark">Začít spolupráci</a>
+          <a href="#kontakt" className="btn-outline-dark">{p.cta}</a>
         </div>
       </div>
     </section>

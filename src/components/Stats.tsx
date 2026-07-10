@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { CONTENT, FOUNDED } from '@/lib/content';
+import { useLanguage } from '@/lib/LanguageContext';
+import { TRANSLATIONS, FOUNDED } from '@/lib/translations';
 import styles from './Stats.module.css';
 
 function Counter({ target, suffix, display }: { target: number; suffix: string; display?: string }) {
@@ -35,13 +36,16 @@ function Counter({ target, suffix, display }: { target: number; suffix: string; 
 }
 
 export default function Stats() {
+  const { lang } = useLanguage();
+  const stats = TRANSLATIONS[lang].stats;
+
   return (
     <div className={styles.bar}>
       <div className={`container ${styles.grid}`}>
-        {CONTENT.stats.map((s, i) => (
+        {stats.map((s, i) => (
           <div key={i} className={styles.item}>
             <p className={styles.value}>
-              <Counter target={s.value} suffix={s.suffix} display={(s as { display?: string }).display} />
+              <Counter target={s.value} suffix={s.suffix} display={s.display} />
             </p>
             <p className={styles.label}>{s.label}</p>
           </div>

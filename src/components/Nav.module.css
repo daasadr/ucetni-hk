@@ -77,6 +77,27 @@
 .burgerOpen span:nth-child(2) { opacity: 0; }
 .burgerOpen span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+.langSwitch {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+.langBtn {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.38);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.3rem;
+  transition: color 0.2s;
+  line-height: 1;
+}
+.langBtn:hover { color: rgba(255,255,255,0.7); }
+.langBtnActive { color: var(--teal-light) !important; }
+
 @media (max-width: 860px) {
   .burger { display: flex; }
   .nav {
@@ -93,5 +114,6 @@
   }
   .navOpen { display: flex; }
   .link { padding: 0.85rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); width: 100%; }
+  .langSwitch { padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); gap: 0.5rem; }
   .navCta { margin-top: 1.25rem; }
 }

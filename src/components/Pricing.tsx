@@ -1,9 +1,12 @@
 'use client';
-import { CONTENT } from '@/lib/content';
+import { useLanguage } from '@/lib/LanguageContext';
+import { TRANSLATIONS } from '@/lib/translations';
 import styles from './Pricing.module.css';
 
 export default function Pricing() {
-  const p = CONTENT.pricing;
+  const { lang } = useLanguage();
+  const p = TRANSLATIONS[lang].pricing;
+
   return (
     <section id="cenik" className={styles.section}>
       <div className="container">
@@ -19,7 +22,7 @@ export default function Pricing() {
               key={i}
               className={`${styles.card} ${plan.highlight ? styles.cardHighlight : ''} reveal reveal-delay-${i + 1}`}
             >
-              {plan.highlight && <span className={styles.badge}>Nejoblíbenější</span>}
+              {plan.highlight && <span className={styles.badge}>{p.popular}</span>}
               <h3 className={styles.planName}>{plan.name}</h3>
               <p className={styles.planDesc}>{plan.desc}</p>
               <div className={styles.priceRow}>

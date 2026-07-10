@@ -1,10 +1,12 @@
 'use client';
 import { asset } from '@/lib/basePath';
-import { CONTENT, FOUNDED } from '@/lib/content';
+import { useLanguage } from '@/lib/LanguageContext';
+import { TRANSLATIONS, FOUNDED } from '@/lib/translations';
 import styles from './About.module.css';
 
 export default function About() {
-  const a = CONTENT.about;
+  const { lang } = useLanguage();
+  const a = TRANSLATIONS[lang].about;
   const years = new Date().getFullYear() - FOUNDED;
 
   return (
@@ -15,7 +17,7 @@ export default function About() {
             <img src={asset('/images/about-photo.webp')} alt="Ing. Markéta Horáková" className={styles.photo} />
             <div className={styles.photoBadge}>
               <span className={styles.badgeNum}>{years}</span>
-              <span className={styles.badgeLabel}>let praxe</span>
+              <span className={styles.badgeLabel}>{a.yearsLabel}</span>
             </div>
           </div>
           <div className={styles.credentials}>

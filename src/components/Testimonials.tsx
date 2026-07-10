@@ -1,9 +1,12 @@
 'use client';
-import { CONTENT } from '@/lib/content';
+import { useLanguage } from '@/lib/LanguageContext';
+import { TRANSLATIONS } from '@/lib/translations';
 import styles from './Testimonials.module.css';
 
 export default function Testimonials() {
-  const t = CONTENT.testimonials;
+  const { lang } = useLanguage();
+  const t = TRANSLATIONS[lang].testimonials;
+
   return (
     <section id="reference" className={styles.section}>
       <div className="container">

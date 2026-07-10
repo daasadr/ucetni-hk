@@ -2,14 +2,14 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { useLanguage, type Lang } from '@/lib/LanguageContext';
+import { TRANSLATIONS } from '@/lib/translations';
 import styles from './Nav.module.css';
 
-const LINKS = [
-  { label: 'O mně', href: '#o-mne' },
-  { label: 'Služby', href: '#sluzby' },
-  { label: 'Ceník', href: '#cenik' },
-  { label: 'Reference', href: '#reference' },
-  { label: 'Kontakt', href: '#kontakt' },
+const LANGS: { code: Lang; label: string }[] = [
+  { code: 'cs', label: 'CS' },
+  { code: 'en', label: 'EN' },
+  { code: 'sl', label: 'SL' },
 ];
 
 export default function Nav() {
@@ -17,6 +17,8 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === '/';
+  const { lang, setLang } = useLanguage();
+  const t = TRANSLATIONS[lang].nav;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -31,17 +33,29 @@ export default function Nav() {
       <div className={`container ${styles.inner}`}>
         <Link href="/" className={styles.logo}>
           <span className={styles.logoName}>Markéta Horáková</span>
-          <span className={styles.logoTitle}>Certifikovaná účetní</span>
+          <span className={styles.logoTitle}>{t.logoTitle}</span>
         </Link>
 
         <nav className={`${styles.nav} ${open ? styles.navOpen : ''}`}>
-          {LINKS.map(l => (
+          {t.links.map(l => (
             <a key={l.href} href={l.href} className={styles.link} onClick={() => setOpen(false)}>
               {l.label}
             </a>
           ))}
+          <div className={styles.langSwitch}>
+            {LANGS.map(l => (
+              <button
+                key={l.code}
+                className={`${styles.langBtn} ${lang === l.code ? styles.langBtnActive : ''}`}
+                onClick={() => { setLang(l.code); setOpen(false); }}
+                aria-label={`Switch language to ${l.label}`}
+              >
+                {l.label}
+              </button>
+            ))}
+          </div>
           <a href="#kontakt" className={`btn-teal ${styles.navCta}`} onClick={() => setOpen(false)}>
-            Konzultace zdarma
+            {t.cta}
           </a>
         </nav>
 

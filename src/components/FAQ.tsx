@@ -1,10 +1,12 @@
 'use client';
 import { useState } from 'react';
-import { CONTENT } from '@/lib/content';
+import { useLanguage } from '@/lib/LanguageContext';
+import { TRANSLATIONS } from '@/lib/translations';
 import styles from './FAQ.module.css';
 
 export default function FAQ() {
-  const f = CONTENT.faq;
+  const { lang } = useLanguage();
+  const f = TRANSLATIONS[lang].faq;
   const [open, setOpen] = useState<number | null>(0);
 
   return (
@@ -34,8 +36,8 @@ export default function FAQ() {
           ))}
         </div>
         <div className={`${styles.cta} reveal`}>
-          <p className={styles.ctaText}>Nenašli jste odpověď? Napište mi.</p>
-          <a href="#kontakt" className="btn-teal">Napsat dotaz</a>
+          <p className={styles.ctaText}>{lang === 'cs' ? 'Nenašli jste odpověď? Napište mi.' : lang === 'en' ? "Didn't find your answer? Write to me." : 'Niste našli odgovora? Pišite mi.'}</p>
+          <a href="#kontakt" className="btn-teal">{lang === 'cs' ? 'Napsat dotaz' : lang === 'en' ? 'Send a question' : 'Pošljite vprašanje'}</a>
         </div>
       </div>
     </section>

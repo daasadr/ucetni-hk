@@ -1,18 +1,12 @@
+'use client';
+import { useLanguage } from '@/lib/LanguageContext';
+import { TRANSLATIONS } from '@/lib/translations';
 import styles from './Marquee.module.css';
 
-const ITEMS = [
-  'Certifikovaná účetní',
-  '14+ let praxe',
-  '180+ spokojených klientů',
-  '100% daní podáno včas',
-  'Praha a okolí',
-  'Mzdy · DPH · Daně',
-  'Certifikát I. stupně SÚ ČR',
-  'První konzultace zdarma',
-];
-
 export default function Marquee() {
-  const text = ITEMS.join('  ·  ') + '  ·  ';
+  const { lang } = useLanguage();
+  const items = TRANSLATIONS[lang].marquee;
+  const text = items.join('  ·  ') + '  ·  ';
   return (
     <div className={styles.strip} aria-hidden="true">
       <div className={styles.track}>

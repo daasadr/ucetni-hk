@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { DM_Serif_Display, DM_Sans } from 'next/font/google';
 import './globals.css';
 import ScrollReveal from '@/components/ScrollReveal';
+import { LanguageProvider } from '@/lib/LanguageContext';
 
 const dmSerif = DM_Serif_Display({
   weight: ['400'],
@@ -41,8 +42,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" content="#0d2233" />
       </head>
       <body>
-        <ScrollReveal />
-        {children}
+        <LanguageProvider>
+          <ScrollReveal />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
